@@ -32,6 +32,19 @@ function App() {
     setFetchedData(fetchedData.filter(el => el.id !== 10))
   }
 
+  //soal nomor 6
+  const deleteDataKey = () => {
+    alert("menghapus key 'title' dari sebuah data")
+    setFetchedData(fetchedData.map(el => {
+      if(el.title !== 'qui est esse')
+        return el;
+
+      let truncatedObject = el;
+      delete el.title
+      return truncatedObject
+    }))
+  }
+
   return (
     <div>
       <div style={{
@@ -103,6 +116,7 @@ function App() {
             fetchedData === null ?
               <p>Tekan fetch di Soal 3 diatas</p> :
               <div>
+                <button onClick={deleteData}>Delete One Data</button>
                 <div style={{ height: '25em', overflowY: 'scroll' }}>
                   <table>
                     <tr>
@@ -118,7 +132,38 @@ function App() {
                     )}
                   </table>
                 </div>
-                <button onClick={deleteData}>Delete One Data</button>
+              </div>
+          }
+        </div>
+
+        <div style={{
+          marginTop: '1em',
+          backgroundColor: 'white',
+          borderRadius: 10,
+          padding: '1em',
+        }}>
+          <p><b>Soal 6</b></p>
+          <p>Tabel akan ditampilkan ketika tombol Fetch di soal nomor 3 ditekan</p>
+          {
+            fetchedData === null ?
+              <p>Tekan fetch di Soal 3 diatas</p> :
+              <div>
+                <button onClick={deleteDataKey}>Delete One Key from Data</button>
+                <div style={{ height: '25em', overflowY: 'scroll' }}>
+                  <table>
+                    <tr>
+                      {Object.keys(fetchedData[0]).map((el, idx) => <th id={idx}>{el}</th>)}
+                    </tr>
+                    {fetchedData.map(el =>
+                      <tr id={el.id}>
+                        <td>{el.userId}</td>
+                        <td>{el.id}</td>
+                        <td>{el.title === undefined ? "DELETED DATA" : el.title}</td>
+                        <td>{el.body}</td>
+                      </tr>
+                    )}
+                  </table>
+                </div>
               </div>
           }
         </div>
