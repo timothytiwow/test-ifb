@@ -4,24 +4,45 @@ const port = 8080
 
 app.use(express.json())
 
+const checkHeaderMiddleware = (req, res, next) => {
+    const userId = req.headers['user-id']
+    const scope = req.headers['scope']
+
+    console.log(req.headers)
+
+    if(userId !== 'ifabula' && scope !== 'user')
+    {
+        console.log(`Blocked request due to invalid headers`)
+        res.status(401).json({
+            responseCode: 401,
+            responseMessage: "UNAUTHORIZED"
+        })
+        return;
+    }
+
+    next();
+}
+
 app.get('/', (req, res) => {
     res.send("Server's running!")
 })
 
-app.get('/api/v1/getData', (req, res) => {
+app.get('/api/v1/getData', checkHeaderMiddleware, (req, res) => {
     console.log(`Received GET request on /api/v1/getData`)
 
     res.json({
-        status: "200",
+        responseCode: "200",
+        responseMessage: "SUCCESS",
         data: "Hallo!"
     })
 })
 
-app.post('/api/v1/postData', (req, res) => {
+app.post('/api/v1/postData', checkHeaderMiddleware, (req, res) => {
     console.log(`Received POST request on /api/v1/postData with payload: ${JSON.stringify(req.body)}`)
 
     res.json({
-        status: "200",
+        responseCode: "200",
+        responseMessage: "SUCCESS",
         data: `Data received successfully! echo: ${JSON.stringify(req.body)}`
     })
 })
