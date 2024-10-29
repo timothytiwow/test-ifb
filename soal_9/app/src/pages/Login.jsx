@@ -1,7 +1,7 @@
 import logo from '../logo.svg';
 import React from 'react';
 
-function Login({handleLogin}) {
+function Login({ handleLogin }) {
     const [usernameField, setUsernameField] = React.useState('');
     const [passwordField, setPasswordField] = React.useState('');
 
@@ -40,9 +40,27 @@ function Login({handleLogin}) {
                             value={el.val}
                             onChange={el.setVal}
                             placeholder={el.placeholder}
+                            style={{
+                                marginTop: '0.5em',
+                                padding: '1em',
+                                borderRadius: 10,
+                                borderStyle: 'solid',
+                            }}
                         />
                     </form>)}
-                <button onClick={() => handleLogin(usernameField, passwordField)}>Login</button>
+                <button
+                    style={{
+                        backgroundColor: '#61dbfb',
+                        marginTop: '1em',
+                        paddingTop: '0.5em',
+                        paddingBottom: '0.5em',
+                        borderStyle: 'none',
+                        borderRadius: 10,
+                        fontSize: '1em',
+                        fontWeight: 'bold'
+                    }}
+                    onClick={() => handleLogin(usernameField, passwordField)}
+                >Login</button>
             </div>
             <div style={{ display: 'flex', flex: 1, backgroundColor: '#282c34' }}>
                 <img src={logo} />
