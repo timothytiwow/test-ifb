@@ -8,8 +8,6 @@ const checkHeaderMiddleware = (req, res, next) => {
     const userId = req.headers['user-id']
     const scope = req.headers['scope']
 
-    console.log(req.headers)
-
     if(userId !== 'ifabula' && scope !== 'user')
     {
         console.log(`Blocked request due to invalid headers`)
