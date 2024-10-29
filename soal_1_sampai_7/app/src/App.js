@@ -26,6 +26,12 @@ function App() {
       })
   }
 
+  //soal nomor 5
+  const deleteData = () => {
+    alert("menghapus data dengan id 10")
+    setFetchedData(fetchedData.filter(el => el.id !== 10))
+  }
+
   return (
     <div>
       <div style={{
@@ -81,6 +87,38 @@ function App() {
                     </tr>
                   )}
                 </table>
+              </div>
+          }
+        </div>
+
+        <div style={{
+          marginTop: '1em',
+          backgroundColor: 'white',
+          borderRadius: 10,
+          padding: '1em',
+        }}>
+          <p><b>Soal 5</b></p>
+          <p>Tabel akan ditampilkan ketika tombol Fetch di soal nomor 3 ditekan</p>
+          {
+            fetchedData === null ?
+              <p>Tekan fetch di Soal 3 diatas</p> :
+              <div>
+                <div style={{ height: '25em', overflowY: 'scroll' }}>
+                  <table>
+                    <tr>
+                      {Object.keys(fetchedData[0]).map((el, idx) => <th id={idx}>{el}</th>)}
+                    </tr>
+                    {fetchedData.map(el =>
+                      <tr id={el.id}>
+                        <td>{el.userId}</td>
+                        <td>{el.id}</td>
+                        <td>{el.title}</td>
+                        <td>{el.body}</td>
+                      </tr>
+                    )}
+                  </table>
+                </div>
+                <button onClick={deleteData}>Delete One Data</button>
               </div>
           }
         </div>
