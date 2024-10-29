@@ -1,18 +1,20 @@
 import logo from './logo.svg';
 import React from 'react';
+import { sha256 } from 'js-sha256';
 import './App.css';
+
 //soal nomor 1
-const data = require('./data/myJsonArrayObject.json')
+const data = require('./data/myJsonArrayObject.json');
 
 function App() {
-  const [jsonData, setJsonData] = React.useState(data)
+  const [jsonData, setJsonData] = React.useState(data);
 
   //supporting soal nomor 4
-  const [fetchedData, setFetchedData] = React.useState(null)
+  const [fetchedData, setFetchedData] = React.useState(null);
 
   //soal nomor 2
   const changeValue = () => {
-    setJsonData(jsonData.map(el => el.id === 0 ? { ...el, nama: "Splinter" } : el))
+    setJsonData(jsonData.map(el => el.id === 0 ? { ...el, nama: "Splinter" } : el));
   }
 
   //soal nomor 3
@@ -20,16 +22,16 @@ function App() {
     fetch('http://jsonplaceholder.typicode.com/posts')
       .then(resp => resp.json())
       .then(json => {
-        console.log(json)
+        console.log(json);
 
-        setFetchedData(json.slice(0, 10))
+        setFetchedData(json.slice(0, 10));
       })
   }
 
   //soal nomor 5
   const deleteData = () => {
-    alert("menghapus data dengan id 10")
-    setFetchedData(fetchedData.filter(el => el.id !== 10))
+    alert("menghapus data dengan id 10");
+    setFetchedData(fetchedData.filter(el => el.id !== 10));
   }
 
   //soal nomor 6
@@ -40,9 +42,17 @@ function App() {
         return el;
 
       let truncatedObject = el;
-      delete el.title
-      return truncatedObject
+      delete el.title;
+      return truncatedObject;
     }))
+  }
+
+  //soal nomor 7
+  const generateHash = () => {
+    const currentDate = new Date();
+    const dateFormatted = `${currentDate.getDate()}${currentDate.getMonth() + 1}${currentDate.getFullYear()}`;
+    const hash = sha256(`${dateFormatted}timothypriaifabula`);
+    console.log(hash);
   }
 
   return (
@@ -166,6 +176,17 @@ function App() {
                 </div>
               </div>
           }
+        </div>
+
+        <div style={{
+          marginTop: '1em',
+          backgroundColor: 'white',
+          borderRadius: 10,
+          padding: '1em',
+        }}>
+          <p><b>Soal 7</b></p>
+          <p>Tekan tombol hash untuk mengenerate hash, hasil akan ditampilkan di konsol (F12)</p>
+          <button onClick={generateHash}>Generate Hash</button>
         </div>
       </div>
     </div>
