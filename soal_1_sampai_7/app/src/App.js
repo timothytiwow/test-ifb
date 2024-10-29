@@ -38,7 +38,7 @@ function App() {
   const deleteDataKey = () => {
     alert("menghapus key 'title' dari sebuah data")
     setFetchedData(fetchedData.map(el => {
-      if(el.title !== 'qui est esse')
+      if (el.title !== 'qui est esse')
         return el;
 
       let truncatedObject = el;
@@ -65,6 +65,16 @@ function App() {
         paddingRight: '2em',
       }}>
         <div style={{
+          backgroundColor: 'white',
+          borderRadius: 10,
+          padding: '1em'
+        }}>
+          <p><b>Soal 1</b></p>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(data, null, 2)}</p>
+        </div>
+
+        <div style={{
+          marginTop: '1em',
           backgroundColor: 'white',
           borderRadius: 10,
           padding: '1em'
@@ -98,18 +108,22 @@ function App() {
               <p>Tekan fetch di Soal 3 diatas</p> :
               <div style={{ height: '25em', overflowY: 'scroll' }}>
                 <table>
-                  <tr>
-                    {Object.keys(fetchedData[0]).map((el, idx) => <th id={idx}>{el}</th>)}
-                  </tr>
-                  {fetchedData.map(el =>
-                    <tr id={el.id}>
-                      <td>{el.userId}</td>
-                      <td>{el.id}</td>
-                      <td>{el.title}</td>
-                      <td>{el.body}</td>
-                    </tr>
-                  )}
-                </table>
+                    <thead>
+                      <tr>
+                        {Object.keys(fetchedData[0]).map((el, idx) => <th key={idx}>{el}</th>)}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {fetchedData.map(el =>
+                        <tr key={el.id}>
+                          <td>{el.userId}</td>
+                          <td>{el.id}</td>
+                          <td>{el.title}</td>
+                          <td>{el.body}</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
               </div>
           }
         </div>
@@ -129,17 +143,21 @@ function App() {
                 <button onClick={deleteData}>Delete One Data</button>
                 <div style={{ height: '25em', overflowY: 'scroll' }}>
                   <table>
-                    <tr>
-                      {Object.keys(fetchedData[0]).map((el, idx) => <th id={idx}>{el}</th>)}
-                    </tr>
-                    {fetchedData.map(el =>
-                      <tr id={el.id}>
-                        <td>{el.userId}</td>
-                        <td>{el.id}</td>
-                        <td>{el.title}</td>
-                        <td>{el.body}</td>
+                    <thead>
+                      <tr>
+                        {Object.keys(fetchedData[0]).map((el, idx) => <th key={idx}>{el}</th>)}
                       </tr>
-                    )}
+                    </thead>
+                    <tbody>
+                      {fetchedData.map(el =>
+                        <tr key={el.id}>
+                          <td>{el.userId}</td>
+                          <td>{el.id}</td>
+                          <td>{el.title}</td>
+                          <td>{el.body}</td>
+                        </tr>
+                      )}
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -161,17 +179,21 @@ function App() {
                 <button onClick={deleteDataKey}>Delete One Key from Data</button>
                 <div style={{ height: '25em', overflowY: 'scroll' }}>
                   <table>
-                    <tr>
-                      {Object.keys(fetchedData[0]).map((el, idx) => <th id={idx}>{el}</th>)}
-                    </tr>
-                    {fetchedData.map(el =>
-                      <tr id={el.id}>
-                        <td>{el.userId}</td>
-                        <td>{el.id}</td>
-                        <td>{el.title === undefined ? "DELETED DATA" : el.title}</td>
-                        <td>{el.body}</td>
+                    <thead>
+                      <tr>
+                        {Object.keys(fetchedData[0]).map((el, idx) => <th key={idx}>{el}</th>)}
                       </tr>
-                    )}
+                    </thead>
+                    <tbody>
+                      {fetchedData.map(el =>
+                        <tr key={el.id}>
+                          <td>{el.userId}</td>
+                          <td>{el.id}</td>
+                          <td>{el.title === undefined ? "DELETED DATA" : el.title}</td>
+                          <td>{el.body}</td>
+                        </tr>
+                      )}
+                    </tbody>
                   </table>
                 </div>
               </div>
