@@ -12,6 +12,10 @@ function App() {
     const setResize = (_) => setClientSize([window.innerWidth, window.innerHeight]);
     window.addEventListener('resize', setResize);
 
+    if(localStorage.getItem('username') !== null && localStorage.getItem('password') !== null) {
+      setIsLoggedIn(true)
+    }
+
     return () => {
       window.removeEventListener('resize', setResize);
     }
