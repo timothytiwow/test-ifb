@@ -1,0 +1,5 @@
+1. fixed missing comma di line 23 file testdebug.html
+2. fixed missing double quote penutup (") di line 429 file testdebug.html
+3. fixed missing value di line 438 file testdebug.html
+4. missing array indexer di baris 541
+5. missing typo member di baris 528
