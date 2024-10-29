@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import Login from './pages/Login';
+import Main from './pages/Main';
 
 function App() {
   const [clientSize, setClientSize] = React.useState([window.innerWidth, window.innerHeight]);
-  const [usernameField, setUsernameField] = React.useState('');
-  const [passwordField, setPasswordField] = React.useState('');
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
     const setResize = (_) => setClientSize([window.innerWidth, window.innerHeight]);
@@ -16,61 +18,23 @@ function App() {
     }
   }, [])
 
-  const onUsernameFieldChange = eventData => setUsernameField(eventData.target.value)
+  const handleLogin = (username, password) => {
+    console.log('clicked')
+    setIsLoggedIn(true);
+  }
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  }
 
   return (
     <div style={{ width: `${clientSize[0]}px`, height: `${clientSize[1]}px`, display: 'flex' }}>
-      {/* <div style={{
-        display: 'flex',
-        paddingLeft: '2em',
-        paddingRight: '2em',
-        flexDirection: 'column',
-        width: '25em',
-        backgroundColor: 'white',
-        justifyContent: 'center'
-      }}>
-        <p style={{ fontSize: '2em', fontWeight: '700' }}>Selamat Datang!</p>
-        {[
-          {
-            id: 'username',
-            label: 'Nama user',
-            placeholder: 'timothytiwow',
-            val: usernameField,
-            setVal: setUsernameField
-          },
-          {
-            id: 'password',
-            label: 'Kata sandi',
-            placeholder: '*******',
-            val: passwordField,
-            setVal: setPasswordField
-          }
-        ].map(el =>
-          <form key={el.id} style={{ display: 'flex', flexDirection: 'column' }}>
-            <label>{el.label}</label>
-            <input
-              type={el.id === 'password' ? 'password' : 'text'}
-              value={el.val}
-              onChange={el.setVal}
-              placeholder={el.placeholder}
-            />
-          </form>)}
-          <button>Login</button>
-      </div>
-      <div style={{ display: 'flex', flex: 1, backgroundColor: '#282c34' }}>
-        <img src={logo} />
-      </div> */}
-      <div style={{
-        flex: 1,
-        margin: 'auto',
-        display: 'flex',
-        justifyContent: 'center'
-      }}>
-        <div style={{ backgroundColor: 'white', borderRadius: 10, padding: '1em' }}>
-          <p style={{fontSize: '2em', fontWeight: 'bold'}}>Selamat Datang!</p>
-          <button style={{width: '100%'}}>Logout</button>
-        </div>
-      </div>
+      {
+        isLoggedIn ?
+          <Main handleLogout={handleLogout} /> :
+          <Login handleLogin={handleLogin} />
+
+      }
     </div>
   );
 }
