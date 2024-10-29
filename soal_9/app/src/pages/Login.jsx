@@ -23,14 +23,14 @@ function Login({handleLogin}) {
                         label: 'Nama user',
                         placeholder: 'timothytiwow',
                         val: usernameField,
-                        setVal: setUsernameField
+                        setVal: eventData => setUsernameField(eventData.target.value)
                     },
                     {
                         id: 'password',
                         label: 'Kata sandi',
                         placeholder: '*******',
                         val: passwordField,
-                        setVal: setPasswordField
+                        setVal: eventData => setPasswordField(eventData.target.value)
                     }
                 ].map(el =>
                     <form key={el.id} style={{ display: 'flex', flexDirection: 'column' }}>

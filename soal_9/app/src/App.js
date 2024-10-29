@@ -6,25 +6,37 @@ import Main from './pages/Main';
 
 function App() {
   const [clientSize, setClientSize] = React.useState([window.innerWidth, window.innerHeight]);
-
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
     const setResize = (_) => setClientSize([window.innerWidth, window.innerHeight]);
-    window.addEventListener('resize', setResize)
+    window.addEventListener('resize', setResize);
 
     return () => {
-      window.removeEventListener('resize', setResize)
+      window.removeEventListener('resize', setResize);
     }
   }, [])
 
   const handleLogin = (username, password) => {
-    console.log('clicked')
+    if (username.trim().length <= 0) {
+      alert("Mohon masukkan nama user!")
+      return;
+    }
+
+    if (password.trim().length <= 0) {
+      alert("Mohon masukkan kata sandi!")
+      return;
+    }
+
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
     setIsLoggedIn(true);
   }
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.clear();
   }
 
   return (
@@ -33,7 +45,6 @@ function App() {
         isLoggedIn ?
           <Main handleLogout={handleLogout} /> :
           <Login handleLogin={handleLogin} />
-
       }
     </div>
   );
