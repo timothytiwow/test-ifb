@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div style={{ width: `${clientSize[0]}px`, height: `${clientSize[1]}px`, display: 'flex' }}>
-      <div style={{
+      {/* <div style={{
         display: 'flex',
         paddingLeft: '2em',
         paddingRight: '2em',
@@ -59,6 +59,17 @@ function App() {
       </div>
       <div style={{ display: 'flex', flex: 1, backgroundColor: '#282c34' }}>
         <img src={logo} />
+      </div> */}
+      <div style={{
+        flex: 1,
+        margin: 'auto',
+        display: 'flex',
+        justifyContent: 'center'
+      }}>
+        <div style={{ backgroundColor: 'white', borderRadius: 10, padding: '1em' }}>
+          <p style={{fontSize: '2em', fontWeight: 'bold'}}>Selamat Datang!</p>
+          <button style={{width: '100%'}}>Logout</button>
+        </div>
       </div>
     </div>
   );
